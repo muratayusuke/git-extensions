@@ -1,0 +1,4 @@
+git-ffcheck
+========
+
+A git extension to check if you can fast-forward merge to specific branch.
