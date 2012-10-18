@@ -5,14 +5,28 @@ usage(){
 }
 
 main(){
-	if [ $1 != "master" -a $1 != "develop" ]; then
+	if [ ! $1 ] || [ $1 != "master" -a $1 != "develop" ]; then
 		usage
+		exit 1
+	fi
+
+	IS_BRANCH_EXIST=`git branch | grep $1`
+	if [ ! ${IS_BRANCH_EXIST} ]; then
+		echo "[ERROR] branch '$1' is not exist"
 		exit 1
 	fi
 
 	CURRENT_REV=`git rev-list HEAD | head -1`
 	TARGET_REV=`git rev-list $1 | head -1`
-	git rev-list ${CURRENT_REV}..${TARGET_REV}
+
+	RESULT=`git rev-list ${CURRENT_REV}..${TARGET_REV}`
+	
+	if [ ${RESULT} ]; then
+		echo "[ERROR] cannot fast-forward merge to branch '$1'"
+		exit 1
+	fi
+
+	echo "[OK] you can fast-forward merge to branch '$1'"
 }
 
 main "$@"
