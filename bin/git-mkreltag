@@ -4,14 +4,14 @@ export GITEXTENSIONS_DIR=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
 . "${GITEXTENSIONS_DIR}/../lib/util"
 
 if [ -z "$1" ]; then
-  echo git-mkreltag tag_name
-  exit 1
+    echo git-mkreltag tag_name
+    exit 1
 fi
 
 CURRENT_BRANCH=`getCurrentBranch`
 if [ ${CURRENT_BRANCH} != "master" ]; then
-	echoError "You can make tag only from master branch"
-	exit 1
+    echoError "You can make tag only from master branch"
+    exit 1
 fi
 
 git tag rel_`date +%Y%m%d`_$1

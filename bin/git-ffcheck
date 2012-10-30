@@ -4,99 +4,99 @@ export GITEXTENSIONS_DIR=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
 . "${GITEXTENSIONS_DIR}/../lib/util"
 
 usage(){
-	echo "usage: git ffcheck [master | develop]"
+    echo "usage: git ffcheck [master | develop]"
 }
 
 isValidBranch(){
-	CURRENT_BRANCH=$1
-	TARGET_BRANCH=$2
+    CURRENT_BRANCH=$1
+    TARGET_BRANCH=$2
 
-	if [ ${CURRENT_BRANCH} != ${TARGET_BRANCH} ]; then
-		echo "true"
-	else
-		echo "false"
-	fi
+    if [ ${CURRENT_BRANCH} != ${TARGET_BRANCH} ]; then
+        echo "true"
+    else
+        echo "false"
+    fi
 }
 
 isBranchExist(){
-	TARGET_BRANCH=$1
+    TARGET_BRANCH=$1
 
-	IS_BRANCH_EXIST=`git branch | grep ${TARGET_BRANCH} | sed 's/*//' | sed 's/ //'`
-	if [ ${IS_BRANCH_EXIST} ]; then
-		echo "true"
-	else
-		echo "false"
-	fi
+    IS_BRANCH_EXIST=`git branch | grep ${TARGET_BRANCH} | sed 's/*//' | sed 's/ //'`
+    if [ ${IS_BRANCH_EXIST} ]; then
+        echo "true"
+    else
+        echo "false"
+    fi
 }
 
 checkFastForward(){
-	TARGET_BRANCH=$1
+    TARGET_BRANCH=$1
 
-	CURRENT_REV=`git rev-list HEAD | head -1`
-	TARGET_REV=`git rev-list ${TARGET_BRANCH} | head -1`
-	RESULT=`git rev-list ${CURRENT_REV}..${TARGET_REV}`
-	
-	if [ ${RESULT} ]; then
-		echoError "cannot fast-forward merge to branch '${TARGET_BRANCH}'"
-		exit 1
-	fi
+    CURRENT_REV=`git rev-list HEAD | head -1`
+    TARGET_REV=`git rev-list ${TARGET_BRANCH} | head -1`
+    RESULT=`git rev-list ${CURRENT_REV}..${TARGET_REV}`
+    
+    if [ ${RESULT} ]; then
+        echoError "cannot fast-forward merge to branch '${TARGET_BRANCH}'"
+        exit 1
+    fi
 
-	echoSuccess "you can fast-forward merge to branch '${TARGET_BRANCH}'"
+    echoSuccess "you can fast-forward merge to branch '${TARGET_BRANCH}'"
 }
 
 processCheck(){
-	TARGET_BRANCH=$1
-	TARGET_BRANCH_COLORED="\033[0;32m${TARGET_BRANCH}\033[0;39m"
-	STRICT=$2
-	
-	CURRENT_BRANCH=`getCurrentBranch`
-	IS_VALID_BRANCH=`isValidBranch ${CURRENT_BRANCH} ${TARGET_BRANCH}`
-	if [ ${IS_VALID_BRANCH} != "true" ]; then
-		MESSAGE="current branch is same as target branch: ${TARGET_BRANCH}"
-		if [ ${STRICT} = "true" ]; then
-			echoError ${MESSAGE}
-			exit 1
-		else
-			echoWarning ${MESSAGE}
-			return 1
-		fi
-	fi
+    TARGET_BRANCH=$1
+    TARGET_BRANCH_COLORED="\033[0;32m${TARGET_BRANCH}\033[0;39m"
+    STRICT=$2
+    
+    CURRENT_BRANCH=`getCurrentBranch`
+    IS_VALID_BRANCH=`isValidBranch ${CURRENT_BRANCH} ${TARGET_BRANCH}`
+    if [ ${IS_VALID_BRANCH} != "true" ]; then
+        MESSAGE="current branch is same as target branch: ${TARGET_BRANCH}"
+        if [ ${STRICT} = "true" ]; then
+            echoError ${MESSAGE}
+            exit 1
+        else
+            echoWarning ${MESSAGE}
+            return 1
+        fi
+    fi
 
-	IS_BRANCH_EXIST=`isBranchExist ${TARGET_BRANCH}`
-	if [ ${IS_BRANCH_EXIST} != "true" ]; then
-		MESSAGE="branch '${TARGET_BRANCH}' is not exist"
-		if [ ${STRICT} = "true" ]; then
-			echoError ${MESSAGE}
-			exit 1
-		else
-			echoWarning ${MESSAGE}
-			return 1
-		fi
-	fi
+    IS_BRANCH_EXIST=`isBranchExist ${TARGET_BRANCH}`
+    if [ ${IS_BRANCH_EXIST} != "true" ]; then
+        MESSAGE="branch '${TARGET_BRANCH}' is not exist"
+        if [ ${STRICT} = "true" ]; then
+            echoError ${MESSAGE}
+            exit 1
+        else
+            echoWarning ${MESSAGE}
+            return 1
+        fi
+    fi
 
-	checkFastForward ${TARGET_BRANCH}
+    checkFastForward ${TARGET_BRANCH}
 }
 
 main(){
-	if [ $# -gt 1 ]; then
-		usage
-		exit 1
-		
-	elif [ $# -eq 1 ]; then
-		TARGET_BRANCH=$1
-		if [ ${TARGET_BRANCH} != "master" -a ${TARGET_BRANCH} != "develop" ]; then
-			usage
-			exit 1
-		fi
+    if [ $# -gt 1 ]; then
+        usage
+        exit 1
+        
+    elif [ $# -eq 1 ]; then
+        TARGET_BRANCH=$1
+        if [ ${TARGET_BRANCH} != "master" -a ${TARGET_BRANCH} != "develop" ]; then
+            usage
+            exit 1
+        fi
 
-		STRICT="true"
-		processCheck ${TARGET_BRANCH} ${STRICT}
-		
-	elif [ $# -eq 0 ]; then
-		STRICT="false"
-		processCheck develop ${STRICT}
-		processCheck master ${STRICT}
-	fi
+        STRICT="true"
+        processCheck ${TARGET_BRANCH} ${STRICT}
+        
+    elif [ $# -eq 0 ]; then
+        STRICT="false"
+        processCheck develop ${STRICT}
+        processCheck master ${STRICT}
+    fi
 }
 
 main "$@"

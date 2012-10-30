@@ -1,8 +1,8 @@
 #!/bin/sh
 
 if [ -z "$1" ]; then
-  echo git-mktopic topic_name
-  exit 1
+    echo git-mktopic topic_name
+    exit 1
 fi
 
 git checkout -b pro_`date +%Y%m%d`_$1

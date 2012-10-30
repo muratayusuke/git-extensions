@@ -1,21 +1,21 @@
 getCurrentBranch(){
-	# msysgit can't recognize "grep --color"
-	TOP2CHARS=`echo $0 | cut -c 1-2`
-	if [ ${TOP2CHARS} != "C:" ]; then
-		export GREP_OPTIONS='--color=never'
-	fi
-	echo `git branch --no-color | grep '^*' | sed 's/*//' | sed 's/ //'`
+    # msysgit can't recognize "grep --color"
+    TOP2CHARS=`echo $0 | cut -c 1-2`
+    if [ ${TOP2CHARS} != "C:" ]; then
+        export GREP_OPTIONS='--color=never'
+    fi
+    echo `git branch --no-color | grep '^*' | sed 's/*//' | sed 's/ //'`
 }
 
 echoError(){
-	echo "\033[0;31m[ERROR] $@\033[0;39m"
+    echo "\033[0;31m[ERROR] $@\033[0;39m"
 }
 
 echoWarning(){
-	echo "\033[0;33m[Warning] $@\033[0;39m"
+    echo "\033[0;33m[Warning] $@\033[0;39m"
 }
 
 echoSuccess(){
-	echo "\033[0;32m[SUCCESS] $@\033[0;39m"
+    echo "\033[0;32m[SUCCESS] $@\033[0;39m"
 }
 
