@@ -1,23 +1,10 @@
 #!/bin/sh
 
+export GITEXTENSIONS_DIR=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+. "${GITEXTENSIONS_DIR}/../lib/util"
+
 usage(){
 	echo "usage: git ffcheck [master | develop]"
-}
-
-getCurrentBranch(){
-	echo `git branch --no-color | grep '^*' --color=never | sed 's/*//' | sed 's/ //'`
-}
-
-echoError(){
-	echo "\033[0;31m[ERROR] $@\033[0;39m"
-}
-
-echoWarning(){
-	echo "\033[0;33m[Warning] $@\033[0;39m"
-}
-
-echoSuccess(){
-	echo "\033[0;32m[SUCCESS] $@\033[0;39m"
 }
 
 isValidBranch(){

@@ -9,13 +9,14 @@ if exist "%GIT_HOME%" goto :GitHomeOK
 :GitHomeOK
 set ERR=0
 
-echo Installing git-ffcheck into "%GIT_HOME%"...
+echo Installing git-extensions into "%GIT_HOME%"...
 goto :Install
 
 
 :Install
 echo Copying files...
-xcopy "%~dp0\..\gitffcheck\git-ffcheck"            "%GIT_HOME%\bin"                 /Y /R /F
+xcopy "%~dp0\..\gitffcheck\bin"            "%GIT_HOME%\bin"                 /Y /R /F
+xcopy "%~dp0\..\gitffcheck\lib"            "%GIT_HOME%\lib"                 /Y /R /F
 if errorlevel 4 if not errorlevel 5 goto :AccessDenied
 if errorlevel 1 set ERR=1
 
