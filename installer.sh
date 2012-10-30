@@ -2,6 +2,8 @@ mkdir -p ~/.git-extensions/bin
 install -v -m 0755 ./bin/* ~/.git-extensions/bin/
 mkdir ~/.git-extensions/lib
 install -v -m 0755 ./lib/* ~/.git-extensions/lib/
+mkdir ~/.git-extensions/scripts
+install -v -m 0755 ./scripts/* ~/.git-extensions/scripts/
 shell=`echo ${SHELL} | awk -F/ '{ print $NF }'`
 
 echo "================================"

@@ -1,5 +1,6 @@
 getCurrentBranch(){
-	echo `git branch --no-color | grep '^*' --color=never | sed 's/*//' | sed 's/ //'`
+	export GREP_OPTIONS='--color=never'
+	echo `git branch --no-color | grep '^*' | sed 's/*//' | sed 's/ //'`
 }
 
 echoError(){
