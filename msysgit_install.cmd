@@ -15,8 +15,8 @@ goto :Install
 
 :Install
 echo Copying files...
-xcopy "%~dp0\..\gitffcheck\bin"            "%GIT_HOME%\bin"                 /Y /R /F
-xcopy "%~dp0\..\gitffcheck\lib"            "%GIT_HOME%\lib"                 /Y /R /F
+xcopy "%~dp0\bin"            "%GIT_HOME%\bin"                 /Y /R /F
+xcopy "%~dp0\lib"            "%GIT_HOME%\lib"                 /Y /R /F
 if errorlevel 4 if not errorlevel 5 goto :AccessDenied
 if errorlevel 1 set ERR=1
 

@@ -1,5 +1,9 @@
 getCurrentBranch(){
-	export GREP_OPTIONS='--color=never'
+	# msysgit can't recognize "grep --color"
+	TOP2CHARS=`echo $0 | cut -c 1-2`
+	if [ ${TOP2CHARS} != "C:" ]; then
+		export GREP_OPTIONS='--color=never'
+	fi
 	echo `git branch --no-color | grep '^*' | sed 's/*//' | sed 's/ //'`
 }
 
