@@ -1,4 +1,7 @@
-git-ffcheck
-========
+#git-extensions
 
-A git extension to check if you can fast-forward merge to specific branch.
+This is git extensions including some useful commands.
+
+#Install
+##Mac/Linux
+    curl https://raw.github.com/muratayusuke/git-extensions/stable/installer.sh | bash -s

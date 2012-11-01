@@ -1,11 +1,13 @@
-mkdir -p ~/.git-extensions/bin
-install -v -m 0755 ./bin/* ~/.git-extensions/bin/
-mkdir ~/.git-extensions/lib
-install -v -m 0755 ./lib/* ~/.git-extensions/lib/
-mkdir ~/.git-extensions/scripts
-install -v -m 0755 ./scripts/* ~/.git-extensions/scripts/
+if [ -d ~/.git-extensions ]; then
+    rm -rf ~/.git-extensions
+fi
+git clone git@github.com:muratayusuke/git-extensions.git ~/.git-extensions
+chmod 755 ~/.git-extensions/bin/*
+chmod 755 ~/.git-extensions/scripts//*
 shell=`echo ${SHELL} | awk -F/ '{ print $NF }'`
 
+echo
+echo
 echo "================================"
 echo " install completed"
 echo "================================"
