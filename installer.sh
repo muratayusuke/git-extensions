@@ -1,3 +1,5 @@
+#!/usr/bin/bash
+
 if [ -d ~/.git-extensions ]; then
     rm -rf ~/.git-extensions
 fi

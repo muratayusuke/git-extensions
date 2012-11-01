@@ -14,9 +14,10 @@ goto :Install
 
 
 :Install
+git clone git@github.com:muratayusuke/git-extensions.git .git-extensions
 echo Copying files...
-xcopy "%~dp0\bin"            "%GIT_HOME%\bin"                 /Y /R /F
-xcopy "%~dp0\lib"            "%GIT_HOME%\lib"                 /Y /R /F
+xcopy ".git-extensions\bin"            "%GIT_HOME%\bin"                 /Y /R /F
+xcopy ".git-extensions\lib"            "%GIT_HOME%\lib"                 /Y /R /F
 if errorlevel 4 if not errorlevel 5 goto :AccessDenied
 if errorlevel 1 set ERR=1
 

@@ -5,3 +5,8 @@ This is git extensions including some useful commands.
 #Install
 ##Mac/Linux
     curl https://raw.github.com/muratayusuke/git-extensions/stable/installer.sh | bash -s
+
+## msysgit
+    wget https://raw.github.com/muratayusuke/git-extensions/stable/msysgit_install.cmd
+    msysgit_install.cmd
+    
