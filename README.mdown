@@ -22,7 +22,7 @@ You can check if current branch can do fast-forward merge to 'develop' and 'mast
 
 ##git mktopic
 git mktopic can make topic branch named by specific rule, 'pro_YYYYMMDD_hoge'.  
-'pro' means project, and 'YYYYMMDD' is the date you run this command.
+'pro' means project, and 'YYYYMMDD' is the date you run this command.  
 Run this command when you start new project, usually from 'master' or 'develop' branch.  
 To make 'pro_YYYYMMDD_projectname' branch, you only need to type this:  
 
@@ -35,3 +35,12 @@ To make 'pro_YYYYMMDD_projectname' branch, you only need to type this:
 
 As you see, this command is 'git checkout -b' with prefix of branch name.
 
+##git mkreltag
+git mkreltag is tag version of git mktopic. The prefix is 'rel_YYYYMMDD_hoge'.
+'rel' means release. So you can make 'rel_YYYYMMDD_releasename' tag with this:
+
+    $ git mkreltag releasename
+    $ git tag
+    rel_20121106_releasename
+
+You can use this command only from 'master' branch.
