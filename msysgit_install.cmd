@@ -14,7 +14,8 @@ goto :Install
 
 
 :Install
-git clone git@github.com:muratayusuke/git-extensions.git .git-extensions
+if exist .git-extensions rd /s /q .git-extensions
+call git clone git@github.com:muratayusuke/git-extensions.git .git-extensions
 echo Copying files...
 xcopy ".git-extensions\bin"            "%GIT_HOME%\bin"                 /Y /R /F
 xcopy ".git-extensions\lib"            "%GIT_HOME%\lib"                 /Y /R /F
@@ -23,6 +24,19 @@ if errorlevel 1 set ERR=1
 
 if %ERR%==1 choice /T 30 /C Y /D Y /M "Some unexpected errors happened. Sorry, you'll have to fix them by yourself."
 
+echo.
+echo ================================
+echo install completed
+echo ================================
+echo Now you can use following command:
+echo.
+echo git ffcheck [master^|develop]
+echo git mktopic name
+echo git mkreltag name
+echo.
+echo for more infromation, check this url:
+echo https://github.com/muratayusuke/git-extensions
+echo.
 
 :End
 endlocal & exit /B %ERR%

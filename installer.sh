@@ -21,3 +21,12 @@ echo
 echo "You need to run 'source ~/.${shell}rc' before you can start using git-extensions."
 echo
 echo "================================"
+echo "After that, you can use following command:"
+echo
+echo "\tgit ffcheck [master|develop]"
+echo "\tgit mktopic name"
+echo "\tgit mkreltag name"
+echo
+echo "for more infromation, check this url:"
+echo "\thttps://github.com/muratayusuke/git-extensions"
+echo
