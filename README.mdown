@@ -11,13 +11,27 @@ This is git extensions including some useful commands.
     $ cmd
     $ msysgit_install.cmd
 
-
-
 #Referrence
 ##git ffcheck
-git ffcheck is support fast-forward merge.  
+git ffcheck supports fast-forward merge.  
 You can check if current branch can do fast-forward merge to 'develop' and 'master' branch like this:
 
     $ git ffcheck
     [Warning] branch 'develop' is not exist
     [SUCCESS] you can fast-forward merge to branch 'master'
+
+##git mktopic
+git mktopic can make topic branch named by specific rule, 'pro_YYYYMMDD_hoge'.  
+'pro' means project, and 'YYYYMMDD' is the date you run this command.
+Run this command when you start new project, usually from 'master' or 'develop' branch.  
+To make 'pro_YYYYMMDD_projectname' branch, you only need to type this:  
+
+    $ git mktopic projectname
+    Switched to a new branch 'pro_20121106_projectname'
+    
+    $ git branch
+      master
+    * pro_20121106_projectname
+
+As you see, this command is 'git checkout -b' with prefix of branch name.
+
