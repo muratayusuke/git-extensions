@@ -1,0 +1,18 @@
+#!/bin/sh
+
+export GITEXTENSIONS_DIR=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+. "${GITEXTENSIONS_DIR}/../lib/util"
+
+main(){
+    CURRENT_BRANCH=`getCurrentBranch`
+    BACKUP_PREFIX='bk_'
+    BACKUP_BRANCH_NAME=${BACKUP_PREFIX}${CURRENT_BRANCH}
+    IS_BRANCH_EXIST=`isBranchExist ${BACKUP_BRANCH_NAME}`
+    if [ ${IS_BRANCH_EXIST} = "true" ]; then
+        git branch -D ${BACKUP_BRANCH_NAME}
+    fi
+    git branch ${BACKUP_BRANCH_NAME}
+    echoSuccess "successfully backup current branch to '${BACKUP_BRANCH_NAME}'"
+}
+
+main

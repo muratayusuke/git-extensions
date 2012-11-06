@@ -12,6 +12,19 @@ This is git extensions including some useful commands.
     $ msysgit_install.cmd
 
 #Referrence
+##git bk
+git bk is simple backup of current branch.
+
+    $ git branch
+    * develop
+      master
+    $git bk
+    [SUCCESS] successfully backup current branch to 'bk_stable'
+    $ git branch
+      bk_develop
+    * develop
+      master
+
 ##git ffcheck
 git ffcheck supports fast-forward merge.  
 You can check if current branch can do fast-forward merge to 'develop' and 'master' branch like this:

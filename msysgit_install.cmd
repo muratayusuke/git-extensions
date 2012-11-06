@@ -30,6 +30,7 @@ echo install completed
 echo ================================
 echo Now you can use following command:
 echo.
+echo git bk
 echo git ffcheck [master^|develop]
 echo git mktopic name
 echo git mkreltag name

@@ -27,3 +27,14 @@ echoSuccess(){
     echo "\033[0;32m[SUCCESS] $@\033[0;39m"
 }
 
+isBranchExist(){
+    TARGET_BRANCH=$1
+
+    IS_BRANCH_EXIST=`git branch | grep ${TARGET_BRANCH} | sed 's/*//' | sed 's/ //'`
+    if [ ${IS_BRANCH_EXIST} ]; then
+        echo "true"
+    else
+        echo "false"
+    fi
+}
+

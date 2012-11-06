@@ -23,6 +23,7 @@ echo
 echo "================================"
 echo "After that, you can use following command:"
 echo
+echo "\tgit bk"
 echo "\tgit ffcheck [master|develop]"
 echo "\tgit mktopic name"
 echo "\tgit mkreltag name"
