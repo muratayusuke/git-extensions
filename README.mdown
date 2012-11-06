@@ -11,10 +11,13 @@ This is git extensions including some useful commands.
     $ cmd
     $ msysgit_install.cmd
 
+
+
 #Referrence
 ##git ffcheck
-git ffcheck is support fast-forward merge.
+git ffcheck is support fast-forward merge.  
 You can check if current branch can do fast-forward merge to 'develop' and 'master' branch like this:
+
     $ git ffcheck
     [Warning] branch 'develop' is not exist
     [SUCCESS] you can fast-forward merge to branch 'master'
