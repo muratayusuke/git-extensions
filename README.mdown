@@ -4,9 +4,17 @@ This is git extensions including some useful commands.
 
 #Install
 ##Mac/Linux
-    curl https://raw.github.com/muratayusuke/git-extensions/stable/installer.sh | bash -s
+    $ curl https://raw.github.com/muratayusuke/git-extensions/stable/installer.sh | bash -s
 
 ## msysgit
-    wget https://raw.github.com/muratayusuke/git-extensions/stable/msysgit_install.cmd
-    msysgit_install.cmd
-    
+    $ wget https://raw.github.com/muratayusuke/git-extensions/stable/msysgit_install.cmd
+    $ cmd
+    $ msysgit_install.cmd
+
+#Referrence
+##git ffcheck
+git ffcheck is support fast-forward merge.
+You can check if current branch can do fast-forward merge to 'develop' and 'master' branch like this:
+    $ git ffcheck
+    [Warning] branch 'develop' is not exist
+    [SUCCESS] you can fast-forward merge to branch 'master'
