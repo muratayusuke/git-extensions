@@ -1,11 +1,12 @@
 #!/usr/bin/bash
 
 if [ -d ~/.git-extensions ]; then
-    rm -rf ~/.git-extensions
+    cd ~/.git-extensions
+    git pull
+else
+    git clone git@github.com:muratayusuke/git-extensions.git ~/.git-extensions
 fi
-git clone git@github.com:muratayusuke/git-extensions.git ~/.git-extensions
-chmod 755 ~/.git-extensions/bin/*
-chmod 755 ~/.git-extensions/scripts//*
+
 shell=`echo ${SHELL} | awk -F/ '{ print $NF }'`
 
 echo
