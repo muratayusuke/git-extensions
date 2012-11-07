@@ -7,9 +7,8 @@ This is git extensions including some useful commands.
     $ curl https://raw.github.com/muratayusuke/git-extensions/stable/installer.sh | bash -s
 
 ## msysgit
-    $ wget https://raw.github.com/muratayusuke/git-extensions/stable/msysgit_install.cmd
-    $ cmd
-    $ msysgit_install.cmd
+1. download msysgit_install.cmd from [here](https://github.com/muratayusuke/git-extensions/raw/stable/msysgit_install.cmd "msysgit_install.cmd")  
+2. double click downloaded msysgit_install.cmd
 
 #Referrence
 ##git bk
@@ -19,7 +18,7 @@ git bk is simple backup of current branch.
     * develop
       master
     $git bk
-    [SUCCESS] successfully backup current branch to 'bk_stable'
+    [SUCCESS] successfully backup current branch to 'bk_develop'
     $ git branch
       bk_develop
     * develop
