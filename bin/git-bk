@@ -8,11 +8,34 @@ main(){
     BACKUP_PREFIX='bk_'
     BACKUP_BRANCH_NAME=${BACKUP_PREFIX}${CURRENT_BRANCH}
     IS_BRANCH_EXIST=`isBranchExist ${BACKUP_BRANCH_NAME}`
+
+    FORCE_DELETE="false"
+    while getopts f opt
+    do
+        case ${opt} in
+            f)
+                FORCE_DELETE="true";;
+        esac
+    done
+    
     if [ ${IS_BRANCH_EXIST} = "true" ]; then
-        git branch -D ${BACKUP_BRANCH_NAME}
+        if [ ${FORCE_DELETE} = "true" ]; then
+            git branch -D ${BACKUP_BRANCH_NAME}
+        else
+            if ! git branch -d ${BACKUP_BRANCH_NAME} > /dev/null 2>&1; then
+                echoError "The branch '${BACKUP_BRANCH_NAME}' is not fully merged.
+If you are sure you want to delete it, run following command:
+
+    git bk -f
+"
+                exit 1
+            else
+                echo Deleted branch ${BACKUP_BRANCH_NAME}
+            fi
+        fi
     fi
     git branch ${BACKUP_BRANCH_NAME}
     echoSuccess "successfully backup current branch to '${BACKUP_BRANCH_NAME}'"
 }
 
-main
+main "$@"
