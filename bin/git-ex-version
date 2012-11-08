@@ -1,0 +1,8 @@
+#!/bin/sh
+
+export GITEXTENSIONS_DIR=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+
+cmd_default(){
+	VERSION=`cat ${GITEXTENSIONS_DIR}/../VERSION`
+	echo "git-extensions ${VERSION}"
+}
