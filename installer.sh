@@ -1,8 +1,9 @@
 #!/usr/bin/bash
 
 if [ -d ~/.git-extensions ]; then
-    cd ~/.git-extensions
+    pushd ~/.git-extensions
     git pull
+    popd
 else
     git clone git@github.com:muratayusuke/git-extensions.git ~/.git-extensions
 fi

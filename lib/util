@@ -1,9 +1,9 @@
 getCurrentBranch(){
     # msysgit can't recognize "grep --color"
     if [ isWindows ]; then
-        export GREP_OPTIONS='--color=never'
+        COLOR_NEVER=' --color=never'
     fi
-    echo `git branch --no-color | grep '^*' | sed 's/*//' | sed 's/ //'`
+    echo `git branch --no-color | grep '^*' ${COLOR_NEVER} | sed 's/*//' | sed 's/ //'`
 }
 
 isWindows(){
