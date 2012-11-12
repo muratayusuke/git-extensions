@@ -1,17 +1,23 @@
 getCurrentBranch(){
     # msysgit can't recognize "grep --color"
-    if [ isWindows ]; then
+	IS_WINDOWS=`isWindows`
+    if [ ${IS_WINDOWS} = "false" ]; then
         COLOR_NEVER=' --color=never'
     fi
     echo `git branch --no-color | grep '^*' ${COLOR_NEVER} | sed 's/*//' | sed 's/ //'`
 }
 
 isWindows(){
-    TOP2CHARS=`echo $0 | cut -c 1-2`
-    if [ ${TOP2CHARS} != "C:" ]; then
-        return 1
+    FIRSTCHAR=`echo $0 | cut -c 1`
+	if [ ${FIRSTCHAR} = "\"" ]; then
+        TOP2CHARS=`echo $0 | cut -c 2-3`
 	else
-		return 0
+	    TOP2CHARS=`echo $0 | cut -c 1-2`
+	fi
+    if [ ${TOP2CHARS} != "C:" ]; then
+        echo "false"
+	else
+		echo "true"
     fi
 }
 
