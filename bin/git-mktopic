@@ -1,8 +1,33 @@
 #!/bin/sh
 
-if [ -z "$1" ]; then
-    echo git-mktopic topic_name
-    exit 1
-fi
+usage(){
+    echo "usage: git-mktopic topic_name"
+}
 
-git checkout -b pro_`date +%Y%m%d`_$1
+cmd_default(){
+    if [ -z "$1" ]; then
+        usage
+        exit 1
+    fi
+
+    git checkout -b pro_`date +%Y%m%d`_$1
+}
+
+cmd_help(){
+    usage
+}
+
+main(){
+    ACTION="default"
+    while getopts h opt
+    do
+        case ${opt} in
+            h)
+                ACTION="help";;
+        esac
+    done
+
+    cmd_${ACTION}
+}
+
+main "$@"

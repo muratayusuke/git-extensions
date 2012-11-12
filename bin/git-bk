@@ -3,23 +3,22 @@
 export GITEXTENSIONS_DIR=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
 . "${GITEXTENSIONS_DIR}/../lib/util"
 
-main(){
+usage(){
+    echo "usage: git bk [-f]"
+    echo
+    echo "    -f: force delete existing backup"
+    echo "    -h: show help"
+    echo
+}
+
+backup(){
     CURRENT_BRANCH=`getCurrentBranch`
     BACKUP_PREFIX='bk_'
     BACKUP_BRANCH_NAME=${BACKUP_PREFIX}${CURRENT_BRANCH}
     IS_BRANCH_EXIST=`isBranchExist ${BACKUP_BRANCH_NAME}`
 
-    FORCE_DELETE="false"
-    while getopts f opt
-    do
-        case ${opt} in
-            f)
-                FORCE_DELETE="true";;
-        esac
-    done
-    
     if [ ${IS_BRANCH_EXIST} = "true" ]; then
-        if [ ${FORCE_DELETE} = "true" ]; then
+        if [ $1 = "force" ]; then
             git branch -D ${BACKUP_BRANCH_NAME}
         else
             if ! git branch -d ${BACKUP_BRANCH_NAME} > /dev/null 2>&1; then
@@ -36,6 +35,33 @@ If you are sure you want to delete it, run following command:
     fi
     git branch ${BACKUP_BRANCH_NAME}
     echoSuccess "successfully backup current branch to '${BACKUP_BRANCH_NAME}'"
+}
+
+cmd_default(){
+    backup normal
+}
+
+cmd_force(){
+    backup force
+}
+
+cmd_help(){
+    usage
+}
+
+main(){
+    ACTION="default"
+    while getopts fh opt
+    do
+        case ${opt} in
+            f)
+                ACTION="force";;
+            h)
+                ACTION="help";;
+        esac
+    done
+
+    cmd_${ACTION}
 }
 
 main "$@"

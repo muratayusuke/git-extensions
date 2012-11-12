@@ -6,7 +6,9 @@ usage(){
     echo "usage: git ex <subcommand>"
 	echo
 	echo "Available subcommands are:"
-	echo "   version   Shows version information."
+	echo "    version: Shows version information."
+	echo "    upgrade: get new version of git-extensions"
+    echo
 }
 
 main_func(){
