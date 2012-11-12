@@ -1,1 +1,7 @@
-export PATH=~/.git-extensions/bin:${PATH}
+shell=`echo ${SHELL} | awk -F/ '{ print $NF }'`
+if echo ${shell} | grep -q csh; then
+    setenv PATH ~/.git-extensions/bin:${PATH}
+else
+    export PATH=~/.git-extensions/bin:${PATH}	
+fi
+
