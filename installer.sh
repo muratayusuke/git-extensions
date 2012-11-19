@@ -32,6 +32,8 @@ echo "    git bk"
 echo "    git ffcheck [master|develop]"
 echo "    git mktopic name"
 echo "    git mkreltag name"
+echo "    git ex version"
+echo "    git ex upgrade"
 echo
 echo "for more infromation, check this url:"
 echo "    https://github.com/muratayusuke/git-extensions"
