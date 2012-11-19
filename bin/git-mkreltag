@@ -22,7 +22,9 @@ cmd_default(){
         exit 1
     fi
 
-    git tag rel_`date +%Y%m%d`_$1
+    TAG_NAME=rel_`date +%Y%m%d`_$1
+    git tag ${TAG_NAME}
+    echo "made new tag '${TAG_NAME}'"
 }
 
 cmd_help(){
