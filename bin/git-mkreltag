@@ -10,7 +10,7 @@ usage(){
     echo
 }
 
-Cmd_default(){
+cmd_default(){
     if [ -z "$1" ]; then
         usage
         exit 1
@@ -39,7 +39,7 @@ main(){
         esac
     done
 
-    cmd_${ACTION}
+    cmd_${ACTION} "$@"
 }
 
 main "$@"
