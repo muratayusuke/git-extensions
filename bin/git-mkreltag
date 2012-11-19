@@ -5,9 +5,12 @@ export GITEXTENSIONS_DIR=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
 
 usage(){
     echo "usage: git-mkreltag <tag_name>"
+    echo
+    echo "    You can make new tag named 'rel_YYYYMMDD_<tag_name>'"
+    echo
 }
 
-cmd_default(){
+Cmd_default(){
     if [ -z "$1" ]; then
         usage
         exit 1

@@ -1,7 +1,10 @@
 #!/bin/sh
 
 usage(){
-    echo "usage: git-mktopic topic_name"
+    echo "usage: git-mktopic <topic_name>"
+    echo
+    echo "    You can make new branch named 'pro_YYYYMMDD_<topic_name>'"
+    echo
 }
 
 cmd_default(){
