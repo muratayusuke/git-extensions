@@ -13,7 +13,7 @@ git bk is simple backup of current branch.
     $ git branch
     * develop
       master
-    $git bk
+    $ git bk
     [SUCCESS] successfully backup current branch to 'bk_develop'
     $ git branch
       bk_develop
