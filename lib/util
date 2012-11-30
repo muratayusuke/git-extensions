@@ -14,7 +14,7 @@ isWindows(){
 	else
 	    TOP2CHARS=`echo $0 | cut -c 1-2`
 	fi
-    if [ ${TOP2CHARS} != "C:" ]; then
+    if [[ ${TOP2CHARS} != "C:" && ${TOP2CHARS} != "c:" ]]; then
         echo "false"
 	else
 		echo "true"
