@@ -5,7 +5,7 @@ if [ -d ~/.git-extensions ]; then
     git pull
     popd
 else
-    git clone git@github.com:muratayusuke/git-extensions.git ~/.git-extensions
+    git clone git://github.com/muratayusuke/git-extensions.git ~/.git-extensions
 fi
 
 shell=`echo ${SHELL} | awk -F/ '{ print $NF }'`
