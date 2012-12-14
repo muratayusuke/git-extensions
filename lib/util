@@ -1,5 +1,6 @@
 getCurrentBranch(){
     # msysgit can't recognize "grep --color"
+   COLOR_NEVER=''
 	IS_WINDOWS=`isWindows`
     if [ ${IS_WINDOWS} = "false" ]; then
         COLOR_NEVER=' --color=never'
@@ -20,15 +21,36 @@ isWindows(){
 }
 
 echoError(){
-    echo "\033[0;31m[ERROR] $@\033[0;39m"
+    PREFIX=""
+    POSTFIX=""
+	IS_WINDOWS=`isWindows`
+    if [ ${IS_WINDOWS} = "false" ]; then
+	    PREFIX="\033[0;31m"
+		POSTFIX="\033[0;39m"
+	fi
+    echo "${PREFIX}[ERROR] $@${POSTFIX}"
 }
 
 echoWarning(){
-    echo "\033[0;33m[Warning] $@\033[0;39m"
+    PREFIX=""
+    POSTFIX=""
+	IS_WINDOWS=`isWindows`
+    if [ ${IS_WINDOWS} = "false" ]; then
+	    PREFIX="\033[0;33m"
+		POSTFIX="\033[0;39m"
+	fi
+    echo "${PREFIX}[Warning] $@${POSTFIX}"
 }
 
 echoSuccess(){
-    echo "\033[0;32m[SUCCESS] $@\033[0;39m"
+    PREFIX=""
+    POSTFIX=""
+	IS_WINDOWS=`isWindows`
+    if [ ${IS_WINDOWS} = "false" ]; then
+	    PREFIX="\033[0;32m"
+		POSTFIX="\033[0;39m"
+	fi
+    echo "${PREFIX}[SUCCESS] $@${POSTFIX}"
 }
 
 isBranchExist(){
