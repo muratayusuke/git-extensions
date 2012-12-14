@@ -6,7 +6,7 @@ cmd_default(){
     if [ -d ~/.git-extensions ]; then
         pushd ~/.git-extensions
         git pull
-        popd >/dev/null 2>&1
+        popd > /dev/null 2>&1
         git ex version
     else
         git clone https://github.com/muratayusuke/git-extensions.git ~/.git-extensions
