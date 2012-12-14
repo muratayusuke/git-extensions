@@ -13,7 +13,7 @@ isWindows(){
 		exit
 	fi
 	
-    OS_PREFIX = `echo $OS | cut -c 1-7`
+    OS_PREFIX=`echo $OS | cut -c 1-7`
     if [ $OS_PREFIX = "Windows" ]; then
 	    echo "true"
 	fi
