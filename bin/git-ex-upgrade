@@ -4,7 +4,7 @@ export GITEXTENSIONS_DIR=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
 . "${GITEXTENSIONS_DIR}/../lib/util"
 cmd_default(){
     if [ -d ~/.git-extensions ]; then
-        pushd ~/.git-extensions
+        pushd ~/.git-extensions > /dev/null 2>&1
         git pull
         popd > /dev/null 2>&1
         git ex version
