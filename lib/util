@@ -8,17 +8,15 @@ getCurrentBranch(){
 }
 
 isWindows(){
-    FIRSTCHAR=`echo $0 | cut -c 1`
-	if [ ${FIRSTCHAR} = "\"" ]; then
-        TOP2CHARS=`echo $0 | cut -c 2-3`
-	else
-	    TOP2CHARS=`echo $0 | cut -c 1-2`
+    if [ ! $OS ]; then
+	    echo "false"
+		exit
 	fi
-    if [[ ${TOP2CHARS} != "C:" && ${TOP2CHARS} != "c:" ]]; then
-        echo "false"
-	else
-		echo "true"
-    fi
+	
+    OS_PREFIX = `echo $OS | cut -c 1-7`
+    if [ $OS_PREFIX = "Windows" ]; then
+	    echo "true"
+	fi
 }
 
 echoError(){
