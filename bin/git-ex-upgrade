@@ -1,19 +1,34 @@
-#!/bin/sh
+#!/bin/bash
 
 export GITEXTENSIONS_DIR=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
 . "${GITEXTENSIONS_DIR}/../lib/util"
-
 cmd_default(){
     if [ -d ~/.git-extensions ]; then
         pushd ~/.git-extensions
         git pull
-        popd
+        popd >/dev/null 2>&1
         git ex version
     else
-        echoError "git-extensions is not installed properly."
-        echoError "Please run following command to install git-extensions:"
+        git clone https://github.com/muratayusuke/git-extensions.git ~/.git-extensions
+
+        shell=`echo ${SHELL} | awk -F/ '{ print $NF }'`
+        if [ ${shell} = "sh" ]; then
+            shell="bash"
+        fi
+
         echo
-        echoError "    curl https://raw.github.com/muratayusuke/git-extensions/stable/installer.sh | bash -s"
+        echo
+        echo "================================"
+        echo " update completed"
+        echo "================================"
+        echo
+        echo "Please add the line to ~/.${shell}rc :"
+        echo
+        echo "    [[ -s ~/.git-extensions/scripts/init ]] && source ~/.git-extensions/scripts/init"
+        echo
+        echo "You need to run 'source ~/.${shell}rc' before you can start using git-extensions."
+        echo
+        echo "================================"
         echo
     fi
 }
