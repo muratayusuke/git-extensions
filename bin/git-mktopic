@@ -13,7 +13,7 @@ cmd_default(){
         exit 1
     fi
 
-    git checkout -b pro_`date +%Y%m%d`_$1
+    git checkout -b feature/$1
 }
 
 cmd_help(){
