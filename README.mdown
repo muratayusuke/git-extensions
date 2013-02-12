@@ -29,17 +29,14 @@ You can check if current branch can do fast-forward merge to 'develop' and 'mast
     [SUCCESS] you can fast-forward merge to branch 'master'
 
 ##git mktopic
-git mktopic can make topic branch named by specific rule, 'pro_YYYYMMDD_hoge'.  
-'pro' means project, and 'YYYYMMDD' is the date you run this command.  
-Run this command when you start new project, usually from 'master' or 'develop' branch.  
-To make 'pro_YYYYMMDD_projectname' branch, you only need to type this:  
+git mktopic can make topic branch named by specific rule, 'feature/hoge'.  
 
-    $ git mktopic projectname
-    Switched to a new branch 'pro_20121106_projectname'
+    $ git mktopic featurename
+    Switched to a new branch 'feature/featurename'
     
     $ git branch
       master
-    * pro_20121106_projectname
+    * feature/featurename
 
 As you see, this command is 'git checkout -b' with prefix of branch name.
 
