@@ -30,8 +30,9 @@ echo "After that, you can use following command:"
 echo
 echo "    git bk"
 echo "    git ffcheck [master|develop]"
-echo "    git mktopic name"
-echo "    git mkreltag name"
+echo "    git mktopic <branch_name>"
+echo "    git mkreltag <tag_name>"
+echo "    git remove-remote-branch <repository> <branch_name>"
 echo "    git ex version"
 echo "    git ex upgrade"
 echo
