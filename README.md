@@ -20,6 +20,18 @@ git bk is simple backup of current branch.
     * develop
       master
 
+##git mkbr
+git mkbr can create branch with following prefix.  
+no option or -f : "feature/"  
+-b : "bugfix/"  
+-r : "release/"  
+-h : "hotfix/"  
+
+    $ git mkbr hoge
+	Switched to a new branch 'feature/hoge'
+	$ git mkbr -h fuga
+	Switched to a new branch 'hotfix/fuga'
+
 ##git ffcheck
 git ffcheck supports fast-forward merge.  
 You can check if current branch can do fast-forward merge to 'develop' and 'master' branch like this:

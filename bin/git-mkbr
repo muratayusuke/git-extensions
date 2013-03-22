@@ -1,0 +1,49 @@
+#!/bin/sh
+
+usage(){
+    echo "usage: git-mkbr [option] <topic_name>"
+    echo
+    echo "    You can make new branch named following:"
+    echo
+    echo "    -f <default>: feature/<topic_name>"
+    echo "    -b          : bugfix/<topic_name>"
+    echo "    -r          : release/<topic_name>"
+    echo "    -hf         : hotfix/<topic_name>"
+    echo
+}
+
+cmd_default(){
+    if [ -z "$1" ] || [ -z "$2" ]; then
+        usage
+        exit 1
+    fi
+
+    git checkout -b $1/$2
+}
+
+cmd_help(){
+    usage
+}
+
+main(){
+    ACTION="default"
+    TYPE="feature"
+    NAME=$1
+    while getopts fbrh opt
+    do
+        case ${opt} in
+            f) ;;
+            b)
+                TYPE="bugfix";;
+            r)
+                TYPE="release";;
+            h)
+                TYPE="hotfix";;
+        esac
+        NAME=$2
+    done
+
+    cmd_${ACTION} ${TYPE} ${NAME}
+}
+
+main "$@"

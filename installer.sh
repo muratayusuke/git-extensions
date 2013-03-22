@@ -29,6 +29,7 @@ echo "================================"
 echo "After that, you can use following command:"
 echo
 echo "    git bk"
+echo "    git mkbr"
 echo "    git ffcheck [master|develop]"
 echo "    git mktopic <branch_name>"
 echo "    git mkreltag <tag_name>"
