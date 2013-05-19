@@ -71,7 +71,13 @@ git mkreltag is tag version of git mktopic. The prefix is 'rel_YYYYMMDD_hoge'.
 You can use this command only from 'master' branch.
 
 ##git remove-remote-branch
-Do you know how to remove remote branch?
+Do you know how to remove remote branch?  
 Default command is not intuitive, so try this command:
 
     $ git remove-remote-branch origin branch_name
+
+##git ex upgrade
+Get latest version of git-extensions.
+
+##git ex version
+Show current version of git-extensions.
