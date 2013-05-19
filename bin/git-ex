@@ -1,6 +1,7 @@
-#!/bin/bash
+#!/bin/sh
 
 export GITEXTENSIONS_DIR=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+. "${GITEXTENSIONS_DIR}/../lib/util"
 
 usage(){
     echo "usage: git ex <subcommand>"
@@ -35,13 +36,16 @@ main_func(){
     # in that case, we interpret this arg as a flag for the default
     # command
     SUBACTION="default"
-    if [ "$1" != "" ] && { ! echo "$1" | grep -q "^-"; } then
-        SUBACTION="$1"; shift
-    fi
-    if ! type "cmd_${SUBACTION}" >/dev/null 2>&1; then
-        echoWarning "Unknown subcommand: '${SUBACTION}'"
-        usage
-        exit 1
+
+    if [ $SUBCOMMAND != "push" ]; then # when git ex push, pass all args to cmd_default
+        if [ "$1" != "" ] && { ! echo "$1" | grep -q "^-"; } then
+            SUBACTION="$1"; shift
+        fi
+        if ! type "cmd_${SUBACTION}" >/dev/null 2>&1; then
+            echoWarning "Unknown subcommand: '${SUBACTION}'"
+            usage
+            exit 1
+        fi
     fi
 
     cmd_${SUBACTION} "$@"

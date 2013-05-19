@@ -1,0 +1,24 @@
+#!/bin/bash
+
+export GITEXTENSIONS_DIR=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+. "${GITEXTENSIONS_DIR}/../lib/util"
+
+cmd_default(){
+    if [ $# -eq 0 ]; then
+        echo "[git-ex] try git push without any arg..."
+        echo "[git-ex][run] git push"
+        git push
+        if [ $? -eq 0 ]; then
+            exit 0
+        fi
+
+        MESSAGE="git push failed. now pushing to origin and same branch name..."
+        echoWarning ${MESSAGE}
+        BRANCH=`getCurrentBranch`
+        echo "[git-ex][run] git push -u origin $BRANCH"
+        git push -u origin $BRANCH
+    else
+        echo "[run] git push $@"
+        git push "$@"
+    fi
+}
