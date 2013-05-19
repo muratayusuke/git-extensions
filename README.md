@@ -32,6 +32,14 @@ no option or -f : "feature/"
 	$ git mkbr -h fuga
 	Switched to a new branch 'hotfix/fuga'
 
+##git ex push
+You don't need `git push --set-upstream origin feature/hoge` anymore.  
+Just need `git ex push`.  
+This command tries to `git push` at first, but if failed,  
+tries to `git push -u origin <CURRENT BRANCH NAME>` automatically.  
+Wonderful!  
+Of course, if there is at least 1 argument, it runs `git push <ARGS>` as normal `git push`.
+
 ##git ffcheck
 git ffcheck supports fast-forward merge.  
 You can check if current branch can do fast-forward merge to 'develop' and 'master' branch like this:
