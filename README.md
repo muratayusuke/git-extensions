@@ -26,6 +26,7 @@ no option or -f : "feature/"
 -b : "bugfix/"  
 -r : "release/"  
 -h : "hotfix/"  
+-p : "project/"
 
     $ git mkbr hoge
 	Switched to a new branch 'feature/hoge'
