@@ -9,6 +9,7 @@ usage(){
     echo "    -b          : bugfix/<topic_name>"
     echo "    -r          : release/<topic_name>"
     echo "    -hf         : hotfix/<topic_name>"
+    echo "    -p          : project/<topic_name>"
     echo
 }
 
@@ -29,7 +30,7 @@ main(){
     ACTION="default"
     TYPE="feature"
     NAME=$1
-    while getopts fbrh opt
+    while getopts fbrhp opt
     do
         case ${opt} in
             f) ;;
@@ -39,6 +40,8 @@ main(){
                 TYPE="release";;
             h)
                 TYPE="hotfix";;
+            p)
+                TYPE="project";;
         esac
         NAME=$2
     done
