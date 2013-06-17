@@ -21,4 +21,5 @@ fi
 # make tag and push
 TAGNAME=v`cat ${GITEXTENSIONS_DIR}/../VERSION`
 git tag $TAGNAME
+git push origin stable
 git push origin $TAGNAME
