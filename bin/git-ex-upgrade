@@ -2,9 +2,20 @@
 
 export GITEXTENSIONS_DIR=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
 . "${GITEXTENSIONS_DIR}/../lib/util"
+
 cmd_default(){
     if [ -d ~/.git-extensions ]; then
         pushd ~/.git-extensions > /dev/null 2>&1
+
+        echo "`getCurrentBranch`"
+        # checkout stable
+        if [ "`getCurrentBranch`" != "stable" ]; then
+            git checkout stable
+            if [ $? -ne 0 ]; then
+                git checkout -t origin/stable
+            fi
+        fi
+
         git pull
         popd > /dev/null 2>&1
         git ex version
