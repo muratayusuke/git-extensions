@@ -28,7 +28,7 @@ echoError(){
 	    PREFIX="\033[0;31m"
 		POSTFIX="\033[0;39m"
 	fi
-    echo "${PREFIX}[ERROR] $@${POSTFIX}"
+    echo -e "\033[0;31m[ERROR] $@${POSTFIX}"
 }
 
 echoWarning(){
@@ -39,7 +39,7 @@ echoWarning(){
 	    PREFIX="\033[0;33m"
 		POSTFIX="\033[0;39m"
 	fi
-    echo "${PREFIX}[Warning] $@${POSTFIX}"
+    echo -e "${PREFIX}[Warning] $@${POSTFIX}"
 }
 
 echoSuccess(){
@@ -50,7 +50,7 @@ echoSuccess(){
 	    PREFIX="\033[0;32m"
 		POSTFIX="\033[0;39m"
 	fi
-    echo "${PREFIX}[SUCCESS] $@${POSTFIX}"
+    echo -e "${PREFIX}[SUCCESS] $@${POSTFIX}"
 }
 
 isBranchExist(){
