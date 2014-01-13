@@ -19,7 +19,10 @@ cmd_default(){
         exit 1
     fi
 
-    git checkout -b $1/$2
+    BRANCH_NAME=$1/$2
+    START_FROM=$3
+    git branch ${BRANCH_NAME} ${START_FROM}
+    git checkout ${BRANCH_NAME}
 }
 
 cmd_help(){
@@ -30,6 +33,7 @@ main(){
     ACTION="default"
     TYPE="feature"
     NAME=$1
+    START_FROM=$2
     while getopts fbrhp opt
     do
         case ${opt} in
@@ -44,9 +48,10 @@ main(){
                 TYPE="project";;
         esac
         NAME=$2
+        START_FROM=$3
     done
 
-    cmd_${ACTION} ${TYPE} ${NAME}
+    cmd_${ACTION} ${TYPE} ${NAME} ${START_FROM}
 }
 
 main "$@"
