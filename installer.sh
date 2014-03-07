@@ -36,6 +36,8 @@ echo "    git mkreltag <tag_name>"
 echo "    git remove-remote-branch <repository> <branch_name>"
 echo "    git ex version"
 echo "    git ex upgrade"
+echo "    git ex push"
+echo "    git ex tag <tag_name>"
 echo
 echo "for more infromation, check this url:"
 echo "    https://github.com/muratayusuke/git-extensions"

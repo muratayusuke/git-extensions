@@ -41,6 +41,13 @@ tries to `git push -u origin <CURRENT BRANCH NAME>` automatically.
 Wonderful!  
 Of course, if there is at least 1 argument, it runs `git push <ARGS>` as normal `git push`.
 
+##git ex tag
+This command simply make tag and push to remote.
+`git ex tag hoge` is same as `git tag hoge` and `git push origin hoge`.
+`git ex tag other_remote hoge` is same as `git tag hoge` and `git push other_remote hoge`.
+`git ex tag -d hoge` is same as `git tag -d hoge` and `git push origin :hoge`.
+`git ex tag -d other_remote hoge` is same as `git tag -d hoge` and `git push other_remote :hoge`.
+
 ##git ffcheck
 git ffcheck supports fast-forward merge.  
 You can check if current branch can do fast-forward merge to 'develop' and 'master' branch like this:
