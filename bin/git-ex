@@ -9,6 +9,8 @@ usage(){
 	echo "Available subcommands are:"
 	echo "    version: Shows version information."
 	echo "    upgrade: get new version of git-extensions"
+	echo "    push: git push extension"
+	echo "    tag: git tag extension"
     echo
 }
 
@@ -29,23 +31,15 @@ main_func(){
         exit 1
     fi
 
-    # run command
+    # load command
     . "${GITEXTENSIONS_DIR}/git-ex-${SUBCOMMAND}"
 
     # test if the first argument is a flag (i.e. starts with '-')
     # in that case, we interpret this arg as a flag for the default
     # command
     SUBACTION="default"
-
-    if [ $SUBCOMMAND != "push" ]; then # when git ex push, pass all args to cmd_default
-        if [ "$1" != "" ] && { ! echo "$1" | grep -q "^-"; } then
-            SUBACTION="$1"; shift
-        fi
-        if ! type "cmd_${SUBACTION}" >/dev/null 2>&1; then
-            echoWarning "Unknown subcommand: '${SUBACTION}'"
-            usage
-            exit 1
-        fi
+    if [ "$1" != "" ] && { ! echo "$1" | grep -q "^-"; } && [ type "cmd_$1" >/dev/null 2>&1 ]; then
+        SUBACTION="$1"; shift
     fi
 
     cmd_${SUBACTION} "$@"

@@ -1,0 +1,34 @@
+#!/bin/bash
+
+export GITEXTENSIONS_DIR=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+. "${GITEXTENSIONS_DIR}/../lib/util"
+
+usage(){
+    echo "usage:"
+    echo " git-ex-tag <tag_name>"
+    echo "  -> make tag and push to origin"
+    echo " git-ex-tag <remote_name> <tag_name>"
+    echo "  -> make tag and push to remote_name"
+}
+
+cmd_default(){
+    if [ $# -eq 1 ]; then
+        REMOTE="origin"
+        TAG_NAME=$1
+    elif [ $# -eq 2 ]; then
+        REMOTE=$1
+        TAG_NAME=$2
+    else
+        usage
+        exit 1
+    fi
+    echo "[git-ex][run] git tag ${TAG_NAME}"
+    git tag $TAG_NAME
+    if [ $? -ne 0 ]; then
+        echoError "git tag failed"
+        exit 1
+    fi
+
+    echo "[git-ex][run] git push ${REMOTE} ${TAG_NAME}"
+    git push ${REMOTE} ${TAG_NAME}
+}
