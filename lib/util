@@ -64,3 +64,8 @@ isBranchExist(){
     fi
 }
 
+runCmd(){
+    CMD=$@
+    echo "[git-ex][run] $CMD"
+    $CMD
+}

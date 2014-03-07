@@ -12,6 +12,17 @@ usage(){
 }
 
 cmd_default(){
+    MODE="CREATE"
+    while getopts d opt
+    do
+        case ${opt} in
+            d)
+                MODE="DELETE"
+                shift
+                ;;
+        esac
+    done
+
     if [ $# -eq 1 ]; then
         REMOTE="origin"
         TAG_NAME=$1
@@ -22,13 +33,15 @@ cmd_default(){
         usage
         exit 1
     fi
-    echo "[git-ex][run] git tag ${TAG_NAME}"
-    git tag $TAG_NAME
-    if [ $? -ne 0 ]; then
-        echoError "git tag failed"
-        exit 1
-    fi
 
-    echo "[git-ex][run] git push ${REMOTE} ${TAG_NAME}"
-    git push ${REMOTE} ${TAG_NAME}
+    case $MODE in
+        CREATE)
+            runCmd "git tag ${TAG_NAME}"
+            runCmd "git push ${REMOTE} ${TAG_NAME}"
+            ;;
+        DELETE)
+            runCmd "git tag -d ${TAG_NAME}"
+            runCmd "git push ${REMOTE} :${TAG_NAME}"
+            ;;
+    esac
 }
