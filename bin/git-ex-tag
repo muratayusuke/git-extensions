@@ -7,6 +7,8 @@ usage(){
     echo "usage:"
     echo " git-ex-tag <tag_name>"
     echo "  -> make tag and push to origin"
+    echo " git-ex-tag -d <tag_name>"
+    echo "  -> delete local and remote tag"
     echo " git-ex-tag <remote_name> <tag_name>"
     echo "  -> make tag and push to remote_name"
 }
