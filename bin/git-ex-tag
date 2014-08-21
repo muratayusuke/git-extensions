@@ -4,15 +4,12 @@ export GITEXTENSIONS_DIR=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
 . "${GITEXTENSIONS_DIR}/../lib/util"
 
 usage(){
-    echo "usage:"
-    echo " git-ex-tag <tag_name>"
-    echo "  -> make tag and push to origin"
-    echo " git-ex-tag -d <tag_name>"
-    echo "  -> delete tag from local and origin"
-    echo " git-ex-tag <remote_name> <tag_name>"
-    echo "  -> make tag and push to remote_name"
-    echo " git-ex-tag -d <remote_name> <tag_name>"
-    echo "  -> delete tag from local and remote_name"
+    printf "usage:\n"
+    printf " git-ex-tag\t\t\t\t# show current tags\n"
+    printf " git-ex-tag <tag_name>\t\t\t# make tag and push to origin\n"
+    printf " git-ex-tag -d <tag_name>\t\t# delete tag from local and origin\n"
+    printf " git-ex-tag <remote_name> <tag_name>\t# make tag and push to remote_name\n"
+    printf " git-ex-tag -d <remote_name> <tag_name>\t# delete tag from local and remote_name\n"
 }
 
 cmd_default(){
