@@ -27,7 +27,9 @@ cmd_default(){
         esac
     done
 
-    if [ $# -eq 1 ]; then
+    if [ $# -eq 0 ]; then
+        MODE="SHOW"
+    elif [ $# -eq 1 ]; then
         REMOTE="origin"
         TAG_NAME=$1
     elif [ $# -eq 2 ]; then
@@ -39,6 +41,9 @@ cmd_default(){
     fi
 
     case $MODE in
+        SHOW)
+            runCmd "git tag"
+            ;;
         CREATE)
             runCmd "git tag ${TAG_NAME}"
             runCmd "git push ${REMOTE} ${TAG_NAME}"
