@@ -84,6 +84,11 @@ Default command is not intuitive, so try this command:
 
     $ git remove-remote-branch origin branch_name
 
+##git rmd
+This command git remove to all deleted files
+
+    $ git ex rmd
+
 ##git ex upgrade
 Get latest version of git-extensions.
 

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+export GITEXTENSIONS_DIR=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
+. "${GITEXTENSIONS_DIR}/../lib/util"
+
+cmd_default(){
+  runCmd 'git status --porcelain | sed -n "s/^ D //p" | xargs git rm'
+}

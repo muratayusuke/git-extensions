@@ -5,12 +5,13 @@ export GITEXTENSIONS_DIR=$(dirname "$(echo "$0" | sed -e 's,\\,/,g')")
 
 usage(){
     echo "usage: git ex <subcommand>"
-	echo
-	echo "Available subcommands are:"
-	echo "    version: Shows version information."
-	echo "    upgrade: get new version of git-extensions"
-	echo "    push: git push extension"
-	echo "    tag: git tag extension"
+    echo
+    echo "Available subcommands are:"
+    echo "    version: Shows version information."
+    echo "    upgrade: get new version of git-extensions"
+    echo "    push: git push extension"
+    echo "    tag: git tag extension"
+    echo "    rmd: remove deleted files"
     echo
 }
 
