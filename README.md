@@ -4,7 +4,7 @@ This is git extensions including some useful commands.
 
 # Install
 ## Mac/Linux/Windows(msysgit/cygwin)
-    $ curl https://raw.github.com/muratayusuke/git-extensions/stable/installer.sh | bash -s
+    $ curl https://raw.githubusercontent.com/muratayusuke/git-extensions/stable/installer.sh | bash -s
 
 # Referrence
 ## git bk
